@@ -2,8 +2,12 @@ const express = require("express");
 const morgan = require ("morgan");
 const mongoose = require("mongoose");
 
+
 const app = express();
 const PORT = process.env.PORT || 8080;
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
+
 
 app.use(morgan("dev"));
 
@@ -17,9 +21,6 @@ mongoose.connect(MONGODDB_URL,{
     useFindAndModify:false
 })
 
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
 app.listen(PORT,function(){
-    console.log(`Listening on ${PORT}`)
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
 })
