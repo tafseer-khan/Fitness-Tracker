@@ -15,11 +15,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('public'));
 
-var MONGODDB_URL = process.env.MONGODDB_URI || "mongodb://localhost/workout"
-mongoose.connect(MONGODDB_URL,{
-    useNewUrlParser:true,
-    useFindAndModify:false
-})
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/workouts',
+    {useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false}
+)
 
 app.listen(PORT,function(){
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
