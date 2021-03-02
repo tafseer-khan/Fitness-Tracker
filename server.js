@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 
 
 app.use(morgan("dev"));

@@ -1,4 +1,4 @@
-const Workout = require("../models /workout")
+const Workout = require("../models/workout.js")
 
 module.exports = function(app){
     app.get("/api/workouts",(req,res)=>{
@@ -33,17 +33,15 @@ module.exports = function(app){
         })
     })
 
-    app.put("/api/workouts/:id",(req,res)=>{
-        Workout.findByIdandUpdate(
-            params.id,
-            {$push:{exercises:body}},
-            {new: true,runValidators:true}
-        ).then(data=>{
-            res.json(data)
-        }).catch(err=>{
+    app.put("/api/workouts/:id",({body,params},res)=>{   
+        Workout.findByIdAndUpdate(  
+         params.id,
+         {$push:{exercises:body} },
+         {new: true,runValidators:true }
+        )
+        .then(data => res.json(data))
+        .catch(err => { 
             res.json(err)
         })
-
-    })
-
+    });
 }
