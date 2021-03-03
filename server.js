@@ -4,9 +4,8 @@ const mongoose = require("mongoose");
 
 
 const app = express();
-const PORT = process.env.PORT || 8080;
-require("./routes/apiRoutes.js")(app);
-require("./routes/htmlRoutes.js")(app);
+const PORT = process.env.PORT || 27017;
+
 
 
 app.use(morgan("dev"));
@@ -22,6 +21,8 @@ mongoose.connect(
     useCreateIndex: true,
     useFindAndModify: false}
 )
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 
 app.listen(PORT,function(){
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
